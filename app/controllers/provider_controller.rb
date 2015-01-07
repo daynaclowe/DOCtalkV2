@@ -4,7 +4,7 @@ class ProviderController < ApplicationController
   end
 
   def new
-    @provider = Provider.find(params[:id])
+    #binding.pry
     render "form"
   end
 

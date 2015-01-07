@@ -21,13 +21,15 @@ puts "========================================================="
     password: "asdf;lkj",
     password_confirmation: "asdf;lkj"
   )
+  print "|"
 end
+puts ""
 
 puts "Creating Providers"
 puts "========================================================="
 100.times do
   name = Faker::Name.name.split
-  kind = %w[Doctor, Counsellor, Organization, Surgeon].sample
+  kind = %w[Doctor Counsellor Organization Surgeon].sample
   Provider.create!(
     first_name: (name.first unless kind == "Organization"),
     last_name: (name.last unless kind == "Organization"),
@@ -44,7 +46,9 @@ puts "========================================================="
     user_id: User.all.sample.id,
     image: nil
   )
-nd
+  print "|"
+end
+puts ""
 
 puts "Creating Reviews"
 puts "========================================================="
@@ -57,7 +61,9 @@ puts "========================================================="
     name: reviewer_user.user_name,
     email: reviewer_user.email
     )
+  print "|"
 end
+puts ""
 
 puts "Creating Ratings"
 puts "========================================================="
@@ -71,4 +77,6 @@ puts "========================================================="
     accessibility: [*0..4].sample,
     recommendation: [*0..4].sample
   )
+  print "|"
 end
+puts ""
