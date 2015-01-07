@@ -9,10 +9,13 @@ gem 'jquery-rails'
 
 gem 'simple_form'
 gem 'bootstrap-sass'
+gem 'devise'
 
 group :development do
   gem 'pry-rails'
   gem 'awesome_print'
+  gem 'quiet_assets'
+  gem 'faker'
   gem 'spring'
 end
 
