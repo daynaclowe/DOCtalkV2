@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  provider_id: 1
+  knowledge: 1
+  support: 1
+  comfort: 1
+  accessibility: 1
+  recommendation: 1
+
+two:
+  user_id: 1
+  provider_id: 1
+  knowledge: 1
+  support: 1
+  comfort: 1
+  accessibility: 1
+  recommendation: 1
