@@ -22,8 +22,8 @@
             %li
               = link_to "Browse", providers_path
             %li
-              = link_to "Share", provider_new_path
+              = link_to "Share", new_provider_path
             %li
-              %a{:href => "#"} Login / Sign Up
+              = link_to "Login / Sign Up", new_user_session_path
     .container
       = yield
