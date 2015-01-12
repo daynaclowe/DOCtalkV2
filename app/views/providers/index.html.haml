@@ -1,0 +1,8 @@
+%table.table.table-bordered
+  %tr
+    %td First Name
+    %td Last Name
+  - @providers.each do |p|
+    %tr
+      %td= p.first_name
+      %td= p.last_name
