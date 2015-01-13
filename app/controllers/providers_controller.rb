@@ -1,4 +1,6 @@
 class ProvidersController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
+
   def index
     @providers = Provider.all
   end
@@ -15,7 +17,7 @@ class ProvidersController < ApplicationController
       redirect_to @provider, notice: "D.O.C Successfully Added!"
     else
       flash[:message] = "Something did not validate."
-      render 'new'
+      render "form"
     end
   end
 
