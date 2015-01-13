@@ -1,8 +1,7 @@
-%table.table.table-bordered
-  %tr
-    %td First Name
-    %td Last Name
-  - @providers.each do |p|
-    %tr
-      %td= p.first_name
-      %td= p.last_name
+- @providers.each do |provider|
+  = link_to provider_path(provider.id) do
+    %p.provider-index
+      = provider.organization_name
+      |
+      \#{provider.first_name}
+      \#{provider.last_name}
