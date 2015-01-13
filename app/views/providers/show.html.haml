@@ -12,4 +12,8 @@
       Phone Number: #{@provider.phone}
     %p.provider-detail
       Average Waiting Period: #{@provider.waiting_period} Months
-  
+
+  .rating-info
+    .rating-by-user
+      = link_to "Add a Rating", new_provider_rating_path(@provider)
+   
