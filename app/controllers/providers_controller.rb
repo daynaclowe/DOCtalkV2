@@ -23,6 +23,9 @@ class ProvidersController < ApplicationController
 
   def show
     @provider = Provider.find(params[:id])
+    if current_user
+      @rating = current_user.ratings.find_by(:provider => @provider)
+    end
   end
 
   def edit
