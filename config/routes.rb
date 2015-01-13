@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
 
-  resources :providers
+  resources :providers do
+    resources :ratings
+  end
 
   # get 'providers' => 'provider#index'
   # get 'provider/new' => 'provider#new'
