@@ -25,16 +25,36 @@ puts "========================================================="
 end
 puts ""
 
+puts "Creating Organization"
+puts "========================================================="
+50.times do
+  name = Faker::Name.name.split
+  Organization.create!(
+    name: Faker::Company.name,
+    phone: Faker::PhoneNumber.phone_number,
+    address_line1: Faker::Address.street_address,
+    address_line2: nil,
+    postal_code: Faker::Address.zip_code,
+    city: Faker::Address.city,
+    province: Faker::Address.state,
+    phone: Faker::PhoneNumber.phone_number,
+    user_id: User.all.sample.id,
+    image: nil
+  )
+  print "|"
+end
+puts ""
+
 puts "Creating Providers"
 puts "========================================================="
 100.times do
   name = Faker::Name.name.split
-  kind = %w[Doctor Counsellor Organization Surgeon].sample
+  kind = %w[Doctor Counsellor Surgeon].sample
   Provider.create!(
-    first_name: (name.first unless kind == "Organization"),
-    last_name: (name.last unless kind == "Organization"),
+    first_name: name.first,
+    last_name: name.last,
     kind: kind,
-    organization_name: (Faker::Company.name if kind == "Organization"),
+    organization_id: Organization.all.sample.id,
     phone: Faker::PhoneNumber.phone_number,
     address_line1: Faker::Address.street_address,
     address_line2: nil,
@@ -58,6 +78,7 @@ puts "========================================================="
     comment: Faker::Lorem.paragraph,
     user_id: User.all.sample.id,
     provider_id: Provider.all.sample.id,
+    organization_id: Organization.all.sample.id,
     name: reviewer_user.user_name,
     email: reviewer_user.email
     )
@@ -71,6 +92,7 @@ puts "========================================================="
   r = Rating.create!(
     user_id: User.all.sample.id,
     provider_id: Provider.all.sample.id,
+    organization_id: Organization.all.sample.id,
     knowledge: [*0..4].sample,
     support: [*0..4].sample,
     comfort: [*0..4].sample,

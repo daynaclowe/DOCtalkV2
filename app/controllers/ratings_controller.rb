@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
-before_filter :load_provider
-before_filter :authenticate_user!, :except => [:show]
-before_filter :load_rating, only:[:show, :destroy, :edit, :update]
+  before_filter :load_provider
+  before_filter :authenticate_user!, :except => [:show]
+  before_filter :load_rating, only:[:show, :destroy, :edit, :update]
 
   def show
   end
@@ -38,7 +38,15 @@ before_filter :load_rating, only:[:show, :destroy, :edit, :update]
   private
 
   def rating_params
-    params.require(:rating).permit(:knowledge, :support, :comfort, :accessibility, :reccomendation, :provider_id, :user_id, :kind)
+    params.require(:rating)
+          .permit(:knowledge,
+                  :support,
+                  :comfort,
+                  :accessibility,
+                  :reccomendation,
+                  :provider_id,
+                  :user_id,
+                  :kind)
   end
 
   def load_provider

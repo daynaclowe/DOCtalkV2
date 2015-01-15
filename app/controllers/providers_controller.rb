@@ -2,11 +2,11 @@ class ProvidersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
 
   def index
-    @providers = Provider.all
+    @people = Provider.where("providers.first_name IS NULL").order("last_name ASC")
+    @places = Provider.where("providers.first_name IS NOT NULL").order("organization_name ASC")
   end
 
   def new
-    #binding.pry
     render "form"
   end
 
@@ -32,21 +32,20 @@ class ProvidersController < ApplicationController
 
   private
   def provider_params
-    params.require(:provider).permit(
-    :first_name,
-    :last_name,
-    :organization_name,
-    :kind,
-    :address_line1,
-    :address_line2,
-    :postal_code,
-    :city,
-    :province,
-    :phone,
-    :waiting_period,
-    :user_id,
-    :image,
-    )
+    params.require(:provider)
+    .permit(:first_name,
+            :last_name,
+            :organization_name,
+            :kind,
+            :address_line1,
+            :address_line2,
+            :postal_code,
+            :city,
+            :province,
+            :phone,
+            :waiting_period,
+            :user_id,
+            :image)
   end 
 
 end

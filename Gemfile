@@ -15,6 +15,7 @@ group :development do
   gem 'pry-rails'
   gem 'awesome_print'
   gem 'quiet_assets'
+  gem 'did_you_mean'
   gem 'faker'
   gem 'spring'
 end
