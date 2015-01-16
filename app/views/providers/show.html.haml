@@ -14,6 +14,18 @@
       Average Waiting Period: #{@provider.waiting_period} Months
 
   .rating-info
+    .overall-rating
+      Overall Rating
+      - if @provider.ratings.present?
+        = @provider.overall_rating
+      - else
+      No Ratings Avaliable - Be the first to leave a rating!
+
     .rating-by-user
-      = link_to "Add a Rating", new_provider_rating_path(@provider)
+      Your Rating
+      - if present_or_rated?(@provider) 
+        = @provider.ratings_by_user(current_user)
+        = link_to "Edit Rating", edit_provider_rating_path(@provider, @rating)
+      - else
+        = link_to "Add a Rating", new_provider_rating_path(@provider)
    

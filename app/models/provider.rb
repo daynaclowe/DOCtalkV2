@@ -1,27 +1,27 @@
 class Provider < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :kind, :address_line1, :postal_code, :city, :province, :phone, :waiting_period
 
+  belongs_to :user
+  
   has_many :reviews
   has_many :ratings
 
   belongs_to :user
 
+  #has_many :users_that_rated_this, through: :ratings, source: :user
+  #has_many :users_that_reviewed_this, through: :reviews, source: :user
 
   def full_address
      "#{address_line1}\n#{address_line2}\n#{city}, #{province}, #{postal_code}"
   end
 
-  def out_of_twenty
-    self.ratings.sum("knowledge + support + comfort + accessibility + recommendation")
+  def ratings_by_user(user)
+    rating = ratings.find_by(user: user)
+    rating.average_rating_by_user
   end
 
-  def average_rating
-    total_score = self.ratings.sum("knowledge + support + comfort + accessibility + recommendation")
-    ratings_count = ratings.count(:user_id)
-    if ratings_count == 0
-      0
-    else
-      total_score / (20 * ratings_count)
-    end
+  def overall_rating
+    (self.ratings.sum("knowledge + support + comfort + accessibility + recommendation") / (20 * ratings.count(:user_id).to_f) * 100).round(0)
   end
+
 end

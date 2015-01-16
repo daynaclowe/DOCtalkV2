@@ -50,8 +50,8 @@ class RatingsController < ApplicationController
   end
 
   def load_provider
-    
-    @provider = Provider.find(params[:provider_id])
+    provider = params[:provider_id]
+    @provider = Provider.find(provider)
   end
 
   def load_rating
