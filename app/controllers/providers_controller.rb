@@ -2,8 +2,8 @@ class ProvidersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
 
   def index
-    @people = Provider.where("providers.first_name IS NULL").order("last_name ASC")
-    @places = Provider.where("providers.first_name IS NOT NULL").order("organization_name ASC")
+    @people = Provider.all.order("last_name ASC")
+    @places = Organization.all
   end
 
   def new
