@@ -1,5 +1,5 @@
 .provider-info
-  / = image_tag @provider.image_url(:avatar)
+  = image_tag @provider.image_url(:thumb)
   .provider-details
     %p.provider-detail-name
       = @provider.first_name
@@ -19,13 +19,18 @@
       - if @provider.ratings.present?
         = @provider.overall_rating
       - else
+      %p
       No Ratings Avaliable - Be the first to leave a rating!
 
     .rating-by-user
       Your Rating
       - if present_or_rated?(@provider) 
-        = @provider.ratings_by_user(current_user)
+        / = @provider.ratings_by_user(current_user)
+        %p
         = link_to "Edit Rating", edit_provider_rating_path(@provider, @rating)
       - else
+        %p
         = link_to "Add a Rating", new_provider_rating_path(@provider)
+
+        
    

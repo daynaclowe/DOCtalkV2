@@ -10,6 +10,8 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'pry-rails'
