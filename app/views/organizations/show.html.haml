@@ -1,0 +1,31 @@
+.organization-info
+  / = image_tag @provider.image_url(:avatar)
+  .organization-details
+    %p.organization-detail-name
+      = @organization.name
+    %p.organization-detail
+      / Address: #{@organization.full_address}
+    %p.organization-detail
+      Phone Number: #{@organization.phone}
+
+  .rating-info
+    .overall-rating
+      Overall Rating
+      - if @organization.ratings.present?
+        = @organization.overall_rating
+      - else
+      %p
+      No Ratings Avaliable - Be the first to leave a rating!
+
+    .rating-by-user
+      Your Rating
+      - if present_or_rated?(@organization) 
+        / = @organization.ratings_by_user(current_user)
+        %p
+        = link_to "Edit Rating", edit_organization_rating_path(@organization, @rating)
+      - else
+        %p
+        = link_to "Add a Rating", new_organization_rating_path(@organization)
+
+        
+   
