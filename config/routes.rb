@@ -5,8 +5,14 @@ Rails.application.routes.draw do
 
   resources :providers do
     resources :ratings
+    resources :reviews
   end
 
+  resources :organizations do
+    resources :ratings
+    resources :reviews
+  end
+  
   # get 'providers' => 'provider#index'
   # get 'provider/new' => 'provider#new'
   # get 'provider/:id' => 'provider#show'  
