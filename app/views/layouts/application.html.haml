@@ -20,9 +20,11 @@
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li
-              = link_to "Browse", providers_path
+              = link_to "Browse ", providers_path
             %li
-              = link_to "Share", new_provider_path
+              = link_to "Share Provider", new_provider_path
+            %li
+              = link_to "Add Organization", new_organization_path
             - if user_signed_in?
               %li
                 = link_to('Logout', destroy_user_session_path, :method => :delete)
