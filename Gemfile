@@ -15,6 +15,7 @@ gem 'mini_magick'
 
 group :development do
   gem 'pry-rails'
+  gem 'web-console'
   gem 'awesome_print'
   gem 'quiet_assets'
   gem 'did_you_mean'
