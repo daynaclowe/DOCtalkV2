@@ -5,7 +5,7 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
+  %body{ class: "#{controller_name} #{action_name}"}
     %nav.navbar.navbar-default
       .container-fluid
         / Brand and toggle get grouped for better mobile display
@@ -27,6 +27,8 @@
               = link_to "Add Organization", new_organization_path
             - if user_signed_in?
               %li
+                = link_to('Update Account', edit_user_registration_path)
+              %li
                 = link_to('Logout', destroy_user_session_path, :method => :delete)
             - else
               %li
@@ -34,4 +36,6 @@
               %li
                 = link_to('Create Account', new_user_registration_path)
     .container
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: "alert alert-info"
       = yield
