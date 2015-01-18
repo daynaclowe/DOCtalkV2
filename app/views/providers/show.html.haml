@@ -25,12 +25,39 @@
     .rating-by-user
       Your Rating
       - if present_or_rated?(@provider) 
-        / = @provider.ratings_by_user(current_user)
+        = @provider.ratings_by_user(current_user)
         %p
         = link_to "Edit Rating", edit_provider_rating_path(@provider, @rating)
       - else
         %p
         = link_to "Add a Rating", new_provider_rating_path(@provider)
+
+  %h3.provider-reviews
+  Reviews for #{@provider.first_name} #{@provider.last_name}
+  #review-list
+    = render @provider.reviews
+  %h3.create-review Create a New Review
+  = simple_form_for([@provider, @provider.reviews.build]) do |f|
+    .create_review-fields
+      / #review-errors
+      /   - if @review.errors.any?
+      /     = render partial: 'reviews/review_errors'
+      - unless current_user
+        .field
+          = f.label :name
+          %br/
+          = f.text_field :name
+        .field
+          = f.label :email
+          %br/
+          = f.text_field :email
+      .field
+        = f.label :comment
+        %br/
+        = f.text_area :comment
+      .actions
+        = f.submit
+
 
         
    
