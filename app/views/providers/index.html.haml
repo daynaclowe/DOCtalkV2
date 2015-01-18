@@ -2,10 +2,10 @@
   .col-md-6
     %h1 Organizations
     %br
-    - @places.each do |provider|
-      = link_to provider_path(provider.id) do
-        %p.provider-index
-          = provider.name
+    - @places.each do |organization|
+      = link_to organization_path(organization.id) do
+        %p.organization-index
+          = organization.name
 
   .col-md-6
     %h1 Specialists
