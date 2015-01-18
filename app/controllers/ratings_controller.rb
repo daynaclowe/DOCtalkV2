@@ -19,7 +19,8 @@ class RatingsController < ApplicationController
       if @rating.save
         redirect_to @provider, notice: 'Rating successfully created'
       else
-        render 'providers/show'
+        flash[:message] = "Something did not validate."
+        render :new
       end
   end
 
@@ -43,7 +44,7 @@ class RatingsController < ApplicationController
                   :support,
                   :comfort,
                   :accessibility,
-                  :reccomendation,
+                  :recommendation,
                   :provider_id,
                   :user_id,
                   :kind)
