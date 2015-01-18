@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  validate :knowledge, :support, :comfort, :accessibility, :recommendation
+  validates_presence_of :knowledge, :support, :comfort, :accessibility, :recommendation
 
   belongs_to :user
   belongs_to :provider
