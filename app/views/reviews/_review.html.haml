@@ -6,6 +6,7 @@
       - if review.user != nil
         %em
           Posted by #{review.user.user_name} Added on: #{review.created_at}
+  
       - else
         %em
           Posted by #{review.name} Added on: #{review.created_at}
