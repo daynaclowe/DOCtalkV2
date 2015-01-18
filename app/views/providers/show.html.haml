@@ -36,25 +36,14 @@
   Reviews for #{@provider.first_name} #{@provider.last_name}
   #review-list
     = render @provider.reviews
+
   %h3.create-review Create a New Review
   = simple_form_for([@provider, @provider.reviews.build]) do |f|
     .create_review-fields
-      / #review-errors
-      /   - if @review.errors.any?
-      /     = render partial: 'reviews/review_errors'
       - unless current_user
-        .field
-          = f.label :name
-          %br/
-          = f.text_field :name
-        .field
-          = f.label :email
-          %br/
-          = f.text_field :email
-      .field
-        = f.label :comment
-        %br/
-        = f.text_area :comment
+        = f.input :name
+        = f.input :email
+      = f.input :comment
       .actions
         = f.submit
 
