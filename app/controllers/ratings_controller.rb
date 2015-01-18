@@ -13,7 +13,7 @@ class RatingsController < ApplicationController
   def create
     @rating = @provider.ratings.build(rating_params)
       if current_user
-        @rating.user = current_user
+        @rating.user_id = current_user.id
       end
 
       if @rating.save
@@ -50,12 +50,11 @@ class RatingsController < ApplicationController
   end
 
   def load_provider
-    provider = params[:provider_id]
-    @provider = Provider.find(provider)
+    @provider = Provider.find(params[:provider_id])
   end
 
   def load_rating
     @rating = Rating.find(params[:id])
   end
-
+ 
 end
