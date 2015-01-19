@@ -3,17 +3,33 @@ class Provider < ActiveRecord::Base
   before_save :capitalize_fields
 
   mount_uploader :image, ImageUploader
-  
+
   belongs_to :user
   has_many :organizations, through: :relationships
-  
   has_many :reviews
   has_many :ratings
 
-  belongs_to :user
-
   #has_many :users_that_rated_this, through: :ratings, source: :user
   #has_many :users_that_reviewed_this, through: :reviews, source: :user
+
+  def self.search(param_name, param_city, param_kind)
+    results = Provider.all
+    if param_name.present?
+      results = results.where("first_name LIKE ? OR last_name LIKE ?", "%#{param_name}%", "%#{param_name}%")
+    end
+
+    if param_city == "Any"
+      results
+    else
+      results = results.where(city: param_city)
+    end
+
+    if param_kind == "Any"
+      results
+    else
+      results = results.where(kind: param_kind)
+    end
+  end
 
   def full_address
      "#{address_line1}\n#{address_line2}\n#{city}, #{province}, #{postal_code}"
