@@ -2,8 +2,19 @@ class ProvidersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
 
   def index
-    @people = Provider.all.order("last_name ASC")
-    @places = Organization.all
+    if params[:kind] == "Any"
+      @places = Organization.search(params[:name], params[:city])
+      @people = Provider.search(params[:name], params[:city], params[:kind])
+    elsif params[:kind] == "Organization"
+      @places = Organization.search(params[:name], params[:city])
+    else
+      @people = Provider.search(params[:name], params[:city], params[:kind])
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
