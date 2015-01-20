@@ -1,13 +1,15 @@
-= simple_form_for(Organization.new) do |f|
-  .row
-    .col-md-6
-      = f.input :name
-      = f.input :address_line1
-      = f.input :address_line2
-    .col-md-6
-      = f.input :postal_code
-      = f.input :city
-      = f.input :province
-      = f.input :phone, :size => 10, :maxlength => 10
-  .row
-    = f.submit "Save"
+.container
+  = simple_form_for(Organization.new) do |f|
+    .row
+      .col-md-12
+        = f.input :name, label: "Organization Name"
+      .col-md-6
+        = f.input :address_line1
+        = f.input :address_line2
+        = f.input :city
+      .col-md-6
+        = f.input :province
+        = f.input :postal_code
+        = f.input :phone, :size => 10, :maxlength => 10
+    .row
+      = f.submit "Save"
