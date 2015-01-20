@@ -28,6 +28,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (4.0.1)
+      execjs
     awesome_print (1.6.1)
     bcrypt (3.1.9)
     binding_of_caller (0.7.2)
@@ -157,6 +159,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   awesome_print
   bootstrap-sass
   carrierwave

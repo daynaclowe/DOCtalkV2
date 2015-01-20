@@ -4,11 +4,12 @@ gem 'rails', '4.1.6'
 gem 'sqlite3'
 
 gem 'haml-rails'
+gem 'bootstrap-sass'
 gem 'sass-rails', '~> 4.0.3'
+gem 'autoprefixer-rails'
 gem 'jquery-rails'
 
 gem 'simple_form'
-gem 'bootstrap-sass'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
