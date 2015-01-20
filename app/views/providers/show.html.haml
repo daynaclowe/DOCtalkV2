@@ -1,52 +1,55 @@
-.provider-info
-  = image_tag @provider.image_url(:thumb)
-  .provider-details
-    %p.provider-detail-name
-      = @provider.first_name
-      = @provider.last_name
+.row
+  .col-xs-12.col-s-6.col-md-4
+    .provider-details
+      .provider-detail-name
+        = @provider.first_name
+        = @provider.last_name
+      .provider-detail-kind
+        #{@provider.kind}
+        .provider-image-div
+          = image_tag @provider.image_url(:avatar), :class => "provider-pic"
+          / =link_to(image_tag("http://goo.gl/FZUI3"), "http://en.wikipedia.org/wiki/Nyan_Cat", :id => "#fade1", :class => "animated")
+
+  .col-xs-6.col-md-4
+    .provider-details
     %p.provider-detail
       Address: #{@provider.full_address}
-    %p.provider-detail
-      Kind: #{@provider.kind}
     %p.provider-detail
       Phone Number: #{@provider.phone}
     %p.provider-detail
       Average Waiting Period: #{@provider.waiting_period} Months
-
-  .rating-info
-    .overall-rating
-      Overall Rating
-      - if @provider.ratings.present?
-        = @provider.overall_rating
-      - else
-      %p
-      No Ratings Avaliable - Be the first to leave a rating!
-
+  .col-xs-4.col-md-4
+    .rating-info
+      .overall-rating
+        Overall Rating
+        - if @provider.ratings.present?
+          = @provider.overall_rating
+        - else
+          %p
+          No Ratings Avaliable - Be the first to leave a rating!
     .rating-by-user
-      Your Rating
-      - if present_or_rated?(@provider) 
+      - if present_or_rated?(@provider)
+        Your Rating
         = @provider.ratings_by_user(current_user)
         %p
         = link_to "Edit Rating", edit_provider_rating_path(@provider, @rating)
       - else
         %p
         = link_to "Add a Rating", new_provider_rating_path(@provider)
+.container
+  .row
+    .col-xs-12.col-md-12
+      %h3.provider-reviews
+        Reviews for #{@provider.first_name} #{@provider.last_name}
+      #review-list
+        = render @provider.reviews
 
-  %h3.provider-reviews
-  Reviews for #{@provider.first_name} #{@provider.last_name}
-  #review-list
-    = render @provider.reviews
-
-  %h3.create-review Create a New Review
-  = simple_form_for([@provider, @provider.reviews.build]) do |f|
-    .create_review-fields
-      - unless current_user
-        = f.input :name
-        = f.input :email
-      = f.input :comment
-      .actions
-        = f.submit
-
-
-        
-   
+      %h3.create-review Create a New Review
+      = simple_form_for([@provider, @provider.reviews.build]) do |f|
+        .create_review-fields
+          - unless current_user
+            = f.input :name
+            = f.input :email
+          = f.input :comment
+          .actions
+            = f.submit
