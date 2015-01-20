@@ -1,12 +1,14 @@
 - if review.id.present?
   .review
-    #comment
-      %p= review.comment
+    .comment
+      = review.comment
     .poster
       - if review.user != nil
         %em
-          Posted by #{review.user.user_name} Added on: #{review.created_at}
+          Posted by: #{review.user.user_name} 
+        %p
+        Added on: #{review.created_at}
       - else
         %em
-          Posted by #{review.name} Added on: #{review.created_at}
+          Posted by: #{review.name} Added on: #{review.created_at}
     %br
