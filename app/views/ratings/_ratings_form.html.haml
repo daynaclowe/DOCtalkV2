@@ -1,36 +1,35 @@
-= simple_form_for([@provider, @rating]) do |f|
-  - if @rating.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@rating.errors.count, "error")
-        prohibited this rating from being saved:
-      %ul
-        - @rating.errors.full_messages.each do |msg|
-          %li= msg
-  - ratings = [[' Strongly Agree', 4], [' Agree', 3], ['Neither Agree Nor Disagree', 2], ['Disagree', 1], ['Strongly Disagree', 0]]
-  .question-area
-  .row
-    %h4.provider-rating-qs
-      Was your #{(@provider.kind).downcase} knowledgable of trans healthcare?
-    %label.field
-      = f.input :knowledge, as: :radio_buttons, :collection => ratings
-    %h4.provider-rating-qs
-      How would you rate the help and support provided by staff?
-    %label.field
-      = f.input :support, as: :radio_buttons, :collection => ratings
-    %h4.provider-rating-qs
-      Did your provider make you feel comfortable in discussing your heathcare concerns?
-    %label.field
-      = f.input :comfort, as: :radio_buttons, :collection => ratings
-    %h4.provider-rating-qs
-      Was the space accessible? ie. Non-binary washrooms, wheelchair accessible
-    %label.field
-      = f.input :accessibility, as: :radio_buttons, :collection => ratings
-    %h4.provider-rating-qs
-      Would you recommend this #{(@provider.kind).downcase}?
-    %label.field
-      = f.input :recommendation, as: :radio_buttons, :collection => ratings
-  .row
-    = f.submit "Save"
-     
-  
+.container
+  = simple_form_for([@provider, @rating]) do |f|
+    - if @rating.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@rating.errors.count, "error")
+          prohibited this rating from being saved:
+        %ul
+          - @rating.errors.full_messages.each do |msg|
+            %li= msg
+    - ratings = [[' Strongly Agree', 4], [' Agree', 3], ['Neither Agree Nor Disagree', 2], ['Disagree', 1], ['Strongly Disagree', 0]]
+    .question-area
+    .row
+      %h4.provider-rating-qs
+        Was your #{(@provider.kind).downcase} knowledgable of trans healthcare?
+      %label.field
+        = f.input :knowledge, as: :radio_buttons, :collection => ratings
+      %h4.provider-rating-qs
+        How would you rate the help and support provided by staff?
+      %label.field
+        = f.input :support, as: :radio_buttons, :collection => ratings
+      %h4.provider-rating-qs
+        Did your provider make you feel comfortable in discussing your heathcare concerns?
+      %label.field
+        = f.input :comfort, as: :radio_buttons, :collection => ratings
+      %h4.provider-rating-qs
+        Was the space accessible? ie. Non-binary washrooms, wheelchair accessible
+      %label.field
+        = f.input :accessibility, as: :radio_buttons, :collection => ratings
+      %h4.provider-rating-qs
+        Would you recommend this #{(@provider.kind).downcase}?
+      %label.field
+        = f.input :recommendation, as: :radio_buttons, :collection => ratings
+    .row
+      = f.submit "Save"
