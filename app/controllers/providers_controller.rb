@@ -2,7 +2,7 @@ class ProvidersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
 
   def index
-    if params[:kind] == "Any"
+    if params[:kind] == "Who"
       @places = Organization.search(params[:name], params[:city])
       @people = Provider.search(params[:name], params[:city], params[:kind])
     elsif params[:kind] == "Organization"

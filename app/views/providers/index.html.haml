@@ -1,25 +1,26 @@
-.row
-  = form_tag providers_path, method: :get, authentication: false, id: 'search-form' do
-    = select_tag :kind, options_for_select([ "Any", "Organization", "Doctor", "Counsellor", "Surgeon" ], params[:kind])
-    = select_tag :city, options_for_select(["Any"] + Provider.all.map(&:city).uniq.sort, params[:city])
-    = text_field_tag :name, params[:name]
-    = submit_tag "Search"
-.row
-  - if @places.present?
-    .col-md-6
-      %h1 Organizations
-      %br
-      - @places.each do |organization|
-        = link_to organization_path(organization.id) do
-          %p.organization-index
-            = organization.name
-  - if @people.present?
-    .col-md-6
-      %h1 Specialists
-      %br
-      - @people.each do |provider|
-        = link_to provider_path(provider.id) do
-          %p.provider-index
-            \#{provider.first_name}
-            \#{provider.last_name}
-            \#{provider.kind}
+.container
+  .row
+    = form_tag providers_path, method: :get, authentication: false, id: 'search-form' do
+      = select_tag :kind, options_for_select([ "Who", "Organization", "Doctor", "Counsellor", "Surgeon" ], params[:kind])
+      = select_tag :city, options_for_select(["Where"] + Provider.all.map(&:city).uniq.sort, params[:city])
+      = text_field_tag :name, params[:name]
+      = submit_tag "Search", id: 'search-submit'
+  .row
+    - if @places.present?
+      .col-md-6
+        %h1 Organizations
+        %br
+        - @places.each do |organization|
+          = link_to organization_path(organization.id) do
+            %p.organization-index
+              = organization.name
+    - if @people.present?
+      .col-md-6
+        %h1 Specialists
+        %br
+        - @people.each do |provider|
+          = link_to provider_path(provider.id) do
+            %p.provider-index
+              \#{provider.first_name}
+              \#{provider.last_name}
+              \#{provider.kind}

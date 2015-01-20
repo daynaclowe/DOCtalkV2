@@ -18,13 +18,13 @@ class Provider < ActiveRecord::Base
       results = results.where("first_name LIKE ? OR last_name LIKE ?", "%#{param_name}%", "%#{param_name}%")
     end
 
-    if param_city == "Any"
+    if param_city == "Where"
       results
     else
       results = results.where(city: param_city)
     end
 
-    if param_kind == "Any"
+    if param_kind == "Who"
       results
     else
       results = results.where(kind: param_kind)
